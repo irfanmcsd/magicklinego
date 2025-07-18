@@ -10,14 +10,14 @@ import (
 
 // BybitTickerInfo defines relevant fields from Bybit's ticker response
 type BybitTickerInfo struct {
-	Symbol           string `json:"symbol"`
-	LastPrice        string `json:"lastPrice"`
-	Price24hPcnt     string `json:"price24hPcnt"`
-	HighPrice24h     string `json:"highPrice24h"`
-	LowPrice24h      string `json:"lowPrice24h"`
-	PrevPrice24h     string `json:"prevPrice24h"`
-	Turnover24h      string `json:"turnover24h"`
-	Volume24h        string `json:"volume24h"`
+	Symbol       string `json:"symbol"`
+	LastPrice    string `json:"lastPrice"`
+	Price24hPcnt string `json:"price24hPcnt"`
+	HighPrice24h string `json:"highPrice24h"`
+	LowPrice24h  string `json:"lowPrice24h"`
+	PrevPrice24h string `json:"prevPrice24h"`
+	Turnover24h  string `json:"turnover24h"`
+	Volume24h    string `json:"volume24h"`
 }
 
 // shared rate-limited client instance
@@ -46,8 +46,8 @@ func GetAllTickers() ([]*BybitTickerInfo, error) {
 	}
 
 	var parsed struct {
-		RetCode int                `json:"retCode"`
-		RetMsg  string             `json:"retMsg"`
+		RetCode int    `json:"retCode"`
+		RetMsg  string `json:"retMsg"`
 		Result  struct {
 			List []*BybitTickerInfo `json:"list"`
 		} `json:"result"`
@@ -85,8 +85,8 @@ func GetTickerInfo(symbol string) (*BybitTickerInfo, error) {
 	}
 
 	var parsed struct {
-		RetCode int                `json:"retCode"`
-		RetMsg  string             `json:"retMsg"`
+		RetCode int    `json:"retCode"`
+		RetMsg  string `json:"retMsg"`
 		Result  struct {
 			List []*BybitTickerInfo `json:"list"`
 		} `json:"result"`

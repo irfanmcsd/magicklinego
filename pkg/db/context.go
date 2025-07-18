@@ -47,3 +47,12 @@ func AutoMigrate() error {
 		&models.SymbolKlineData{},
 	)
 }
+
+func SaveKlines(klineData []models.SymbolKlineData) error {
+	if len(klineData) == 0 {
+		return nil
+	}
+
+	// Use CreateInBatches for performance
+	return GormDB.CreateInBatches(klineData, 100).Error
+}
