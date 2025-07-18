@@ -12,4 +12,4 @@ symbol:
 
 database:
   provider: sqlite
-  connectionString: "kline.db"
+  connectionString: "./data/kline.db"

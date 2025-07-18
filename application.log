@@ -1,0 +1,54 @@
+[36mINFO[0m[2025-07-18T22:34:40+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:34:40+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:34:40+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:34:40+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:34:40+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-18T22:34:40+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-18T22:41:16+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:41:16+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:41:16+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:41:16+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:41:52+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:41:52+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:41:52+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:41:52+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:42:25+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:42:25+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:42:25+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:42:25+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:42:25+05:00] ✅ SQLite (glebarez) connected.               
+[36mINFO[0m[2025-07-18T22:42:25+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-18T22:42:25+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-18T22:45:55+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:45:55+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:45:55+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:45:55+05:00] ⚙️ Configuration loaded                      
+[33mWARN[0m[2025-07-18T22:45:55+05:00] ⚠️  Database file './storage/kline.db' does not exist. It will be created on first use. 
+[31mFATA[0m[2025-07-18T22:45:55+05:00] ❌ Failed to initialize GORM DB: unable to open database file: out of memory (14) 
+[36mINFO[0m[2025-07-18T22:47:29+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:47:29+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:47:29+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:47:29+05:00] ⚙️ Configuration loaded                      
+[33mWARN[0m[2025-07-18T22:47:29+05:00] ⚠️  Database file './data/kline.db' does not exist. It will be created on first use. 
+[36mINFO[0m[2025-07-18T22:47:29+05:00] ✅ SQLite connected using file: ./data/kline.db 
+[36mINFO[0m[2025-07-18T22:47:29+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-18T22:47:29+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-18T22:47:41+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:47:41+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:47:41+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:47:41+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:47:41+05:00] ✅ SQLite connected using file: ./data/kline.db 
+[36mINFO[0m[2025-07-18T22:47:41+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-18T22:47:41+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-18T22:50:43+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:50:43+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:50:43+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:50:43+05:00] ⚙️ Configuration loaded                      
+[31mFATA[0m[2025-07-18T22:50:43+05:00] ❌ Invalid connection string format (expected 'Data Source=...'): ./data/kline.db 
+[36mINFO[0m[2025-07-18T22:53:22+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-18T22:53:22+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-18T22:53:22+05:00] 🛰️ Scanner update                             [36mstatus[0m=scanning [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-18T22:53:22+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-18T22:53:22+05:00] ✅ SQLite connected using file: ./data/kline.db 
+[36mINFO[0m[2025-07-18T22:53:22+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-18T22:53:22+05:00] ✅ Auto-migration complete                    

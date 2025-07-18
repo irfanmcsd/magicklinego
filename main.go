@@ -2,15 +2,51 @@
 package main
 
 import (
-	"log"
-
+	"github.com/sirupsen/logrus"
 	"scanner.magictradebot.com/config"
 	"scanner.magictradebot.com/pkg/db"
 )
 
 func main() {
+	loggerResult, _ := config.InitLogger(true)
+	log := loggerResult.Logger
 
-	log.Println("📈 Starting Kline Scanner...")
+	log.Info("📈 App started")
+	log.Debug("🔍 Debug info loaded")
+
+	log.WithFields(logrus.Fields{
+		"symbol": "BTCUSDT",
+		"status": "scanning",
+	}).Info("🛰️ Scanner update")
+
+	// Load application config
+	config.LoadConfig("appsettings.yaml")
+	log.Info("⚙️ Configuration loaded")
+
+	// Initialize DB
+	db.InitDB(loggerResult.Logger)
+	log.Info("🗃️ Database initialized")
+
+	// Run DB migrations
+	if err := db.AutoMigrate(); err != nil {
+		log.Fatalf("❌ AutoMigrate failed: %v", err)
+	}
+
+	log.Info("✅ Auto-migration complete")
+}
+
+/*
+func main() {
+
+	loggerResult, _ := config.InitLogger(true)
+	log := loggerResult.Logger
+
+	log.Info("📈 App started")
+	log.Debug("🔍 Debug info loaded")
+	log.WithFields(logrus.Fields{
+		"symbol": "BTCUSDT",
+		"status": "scanning",
+	}).Info("Scanner update")
 
 	config.LoadConfig("appsettings.yaml")
 
@@ -22,7 +58,7 @@ func main() {
 
 	log.Println("✅ Auto-migration complete")
 
-	/*// 1. Initialize Redis & DB
+	// 1. Initialize Redis & DB
 	db := storage.NewPostgres()
 	redis := storage.NewRedis()
 
@@ -45,5 +81,6 @@ func main() {
 		}
 	})
 
-	select {} // block forever*/
+	select {} // block forever
 }
+*/
