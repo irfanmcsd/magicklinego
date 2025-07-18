@@ -1,7 +1,7 @@
-// kline-scanner-go/main.go
 package main
 
 import (
+	"math/rand"
 	"os"
 	"os/signal"
 	"strconv"
@@ -17,27 +17,22 @@ import (
 )
 
 func main() {
-	// Initialize logger
+	// 🧾 Initialize logger
 	loggerResult, _ := config.InitLogger(true)
 	log := loggerResult.Logger
 
 	log.Info("📈 App started")
 	log.Debug("🔍 Debug info loaded")
 
-	log.WithFields(logrus.Fields{
-		"symbol": "BTCUSDT",
-		"status": "scanning",
-	}).Info("🛰️ Scanner update")
-
-	// Load configuration
+	// ⚙️ Load configuration
 	config.LoadConfig("appsettings.yaml")
 	log.Info("⚙️ Configuration loaded")
 
-	// Initialize DB
+	// 🗃️ Initialize DB
 	db.InitDB(log)
 	log.Info("🗃️ Database initialized")
 
-	// Run DB migrations
+	// 🧱 Run DB migrations
 	if err := db.AutoMigrate(); err != nil {
 		log.Fatalf("❌ AutoMigrate failed: %v", err)
 	}
@@ -46,117 +41,115 @@ func main() {
 	exchange := config.Settings.Exchange
 	symbols := config.Settings.Symbols
 
-	// Prepare filters if symbols provided
-	symbolSet := map[string]bool{}
-	if len(symbols) > 0 {
-		for _, sym := range symbols {
-			symbolSet[strings.ToUpper(sym)] = true
-		}
-	}
+	// 🔁 Setup symbol rotator
+	batchSize := 50
+	rotator := aggregator.NewSymbolRotator(symbols, batchSize)
 
-	// Setup aggregator
+	// 📊 Initialize kline aggregator
 	kAgg := aggregator.NewKlineAggregator()
 
-	// Ticker for refresh
+	// ⏱️ Ticker every 5 seconds
 	refreshInterval := 5 * time.Second
 	ticker := time.NewTicker(refreshInterval)
 	defer ticker.Stop()
 
-	// Shutdown hook
+	// 🛑 Handle shutdown signals
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
 
 	log.Infof("⏳ Starting periodic fetch loop for exchange: %s", exchange)
 
+	// ✅ Validate streaming config if enabled
+	streamCfg := config.Settings.Streaming
+	if streamCfg.Enabled {
+		if streamCfg.Provider != "redis" && streamCfg.Provider != "kafka" {
+			log.Fatalf("❌ Invalid streaming provider: %s", streamCfg.Provider)
+		}
+		if streamCfg.Provider == "redis" && streamCfg.Redis.Address == "" {
+			log.Fatal("❌ Redis streaming enabled but Redis.Address is empty")
+		}
+		if streamCfg.Provider == "kafka" && len(streamCfg.Kafka.Brokers) == 0 {
+			log.Fatal("❌ Kafka streaming enabled but no Kafka.Brokers specified")
+		}
+		log.Infof("📤 Streaming enabled using provider: %s", streamCfg.Provider)
+	}
+
 loop:
 	for {
 		select {
 		case <-ticker.C:
+			// 🌪️ Apply random jitter (up to 500ms)
+			jitter := time.Duration(rand.Intn(500)) * time.Millisecond
+			time.Sleep(jitter)
+
+			// ♻️ Rotate next batch
+			batch := rotator.NextBatch()
+			if len(batch) == 0 {
+				log.Warn("⚠️ No symbols in batch to process")
+				continue
+			}
+
+			// 📥 Fetch all tickers
 			tickers, err := exchanges.CoreFuturesAllTickers(exchange)
 			if err != nil {
 				log.Errorf("❌ Failed to fetch tickers: %v", err)
 				continue
 			}
-
 			log.Infof("📥 Fetched %d tickers from %s", len(tickers), exchange)
 
-			// Apply symbol filter
-			if len(symbolSet) > 0 {
-				filtered := []*exchanges.TickerInfo{}
-				for _, t := range tickers {
-					if symbolSet[strings.ToUpper(t.Symbol)] {
-						filtered = append(filtered, t)
-					}
-				}
-				tickers = filtered
-				log.Infof("🔎 Filtered to %d matching symbols", len(tickers))
+			// 🔍 Filter tickers based on batch
+			symbolSet := make(map[string]bool)
+			for _, sym := range batch {
+				symbolSet[strings.ToUpper(sym)] = true
 			}
 
-			// Add tick data to aggregator
+			filtered := []*exchanges.TickerInfo{}
+			for _, t := range tickers {
+				if symbolSet[strings.ToUpper(t.Symbol)] {
+					filtered = append(filtered, t)
+				}
+			}
+			tickers = filtered
+			log.Infof("🔄 Rotated batch matched: %d symbols", len(tickers))
+
+			// ➕ Feed into aggregator + optional streaming
 			for _, t := range tickers {
 				price, err := strconv.ParseFloat(t.LastPrice, 64)
 				if err != nil {
-					log.Printf("❌ Failed to parse price for %s: %v", t.Symbol, err)
+					log.WithFields(logrus.Fields{
+						"symbol": t.Symbol,
+						"value":  t.LastPrice,
+					}).Warnf("❌ Failed to parse price: %v", err)
 					continue
 				}
 
 				volume, err := strconv.ParseFloat(t.Vol24h, 64)
 				if err != nil {
-					log.Printf("❌ Failed to parse volume for %s: %v", t.Symbol, err)
+					log.WithFields(logrus.Fields{
+						"symbol": t.Symbol,
+						"value":  t.Vol24h,
+					}).Warnf("❌ Failed to parse volume: %v", err)
 					continue
 				}
 
 				kAgg.AddPrice(t.Symbol, price, volume)
-			}
 
-			// Determine which intervals to flush
-			now := time.Now().UTC()
-			flushNow := []string{"1m", "3m"}
-			if now.Minute()%5 == 0 {
-				flushNow = append(flushNow, "5m")
-			}
-			if now.Minute()%15 == 0 {
-				flushNow = append(flushNow, "15m")
-			}
-			if now.Minute()%30 == 0 {
-				flushNow = append(flushNow, "30m")
-			}
-			if now.Minute() == 0 {
-				flushNow = append(flushNow, "1h")
-				if now.Hour()%2 == 0 {
-					flushNow = append(flushNow, "2h")
-				}
-				if now.Hour()%4 == 0 {
-					flushNow = append(flushNow, "4h")
-				}
-				if now.Hour()%12 == 0 {
-					flushNow = append(flushNow, "12h")
-				}
-			}
-			if now.Hour() == 0 {
-				flushNow = append(flushNow, "1d")
-				if now.Day()%2 == 1 {
-					flushNow = append(flushNow, "2d")
-				}
-				if now.Day()%3 == 1 {
-					flushNow = append(flushNow, "3d")
+				// 📤 Optional: Push raw tick data
+				if streamCfg.Enabled {
+					go aggregator.PushTickToStream(t, streamCfg, log)
 				}
 			}
 
-			// Remove duplicates
-			intervalSet := map[string]bool{}
-			for _, i := range flushNow {
-				intervalSet[i] = true
-			}
-			finalFlush := []string{}
-			for k := range intervalSet {
-				finalFlush = append(finalFlush, k)
-			}
+			// 🕰️ Determine flush intervals
+			now := time.Now().UTC().Truncate(time.Second)
+			flushNow := uniqueStrings(getFlushIntervals(now))
 
-			// Extract OHLCs
-			klineData := kAgg.ExtractOhlc(finalFlush...)
+			// 📅 Extract OHLCs
+			klineData := kAgg.ExtractOhlc(flushNow...)
 			if len(klineData) > 0 {
 				log.Infof("📊 Extracted %d OHLC records", len(klineData))
+
+				// 💾 Save to DB
 				err := db.SaveKlines(klineData, log)
 				if err != nil {
 					log.Errorf("❌ Failed to save klines: %v", err)
@@ -174,52 +167,55 @@ loop:
 	log.Info("👋 App shutdown complete")
 }
 
-/*
-func main() {
+// getFlushIntervals returns a list of intervals that need flushing at the current time
+func getFlushIntervals(now time.Time) []string {
+	var flush []string
 
-	loggerResult, _ := config.InitLogger(true)
-	log := loggerResult.Logger
+	flush = append(flush, "1m", "3m")
 
-	log.Info("📈 App started")
-	log.Debug("🔍 Debug info loaded")
-	log.WithFields(logrus.Fields{
-		"symbol": "BTCUSDT",
-		"status": "scanning",
-	}).Info("Scanner update")
-
-	config.LoadConfig("appsettings.yaml")
-
-	db.InitDB()
-
-	if err := db.AutoMigrate(); err != nil {
-		log.Fatalf("AutoMigrate failed: %v", err)
+	if now.Minute()%5 == 0 {
+		flush = append(flush, "5m")
 	}
-
-	log.Println("✅ Auto-migration complete")
-
-	// 1. Initialize Redis & DB
-	db := storage.NewPostgres()
-	redis := storage.NewRedis()
-
-	// 2. Load all supported symbols (from Binance for now)
-	symbols := exchange.GetSupportedSymbols("binance") // TODO: extend for okx, bybit, etc.
-	if len(symbols) == 0 {
-		log.Fatal("No symbols found from exchange")
+	if now.Minute()%15 == 0 {
+		flush = append(flush, "15m")
 	}
-
-	// 3. Group symbols (5–10 per batch)
-	groups := scheduler.CreateSymbolGroups(symbols, 10)
-
-	// 4. Schedule each group every 5s, round-robin
-	scheduler.Run(ctx, groups, func(group []string) {
-		for _, symbol := range group {
-			kline := exchange.FetchLatestKline(symbol)
-			if kline != nil {
-				aggregator.SaveKline(redis, db, symbol, kline)
-			}
+	if now.Minute()%30 == 0 {
+		flush = append(flush, "30m")
+	}
+	if now.Minute() == 0 {
+		flush = append(flush, "1h")
+		if now.Hour()%2 == 0 {
+			flush = append(flush, "2h")
 		}
-	})
+		if now.Hour()%4 == 0 {
+			flush = append(flush, "4h")
+		}
+		if now.Hour()%12 == 0 {
+			flush = append(flush, "12h")
+		}
+	}
+	if now.Hour() == 0 {
+		flush = append(flush, "1d")
+		if now.Day()%2 == 1 {
+			flush = append(flush, "2d")
+		}
+		if now.Day()%3 == 1 {
+			flush = append(flush, "3d")
+		}
+	}
 
-	select {} // block forever
+	return flush
 }
-*/
+
+// uniqueStrings returns a deduplicated slice
+func uniqueStrings(input []string) []string {
+	seen := make(map[string]bool)
+	result := []string{}
+	for _, val := range input {
+		if !seen[val] {
+			seen[val] = true
+			result = append(result, val)
+		}
+	}
+	return result
+}

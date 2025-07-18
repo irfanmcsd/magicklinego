@@ -13,3 +13,22 @@ symbol:
 database:
   provider: sqlite
   connectionString: "./data/kline.db"
+
+Aggregator:
+  EnableJitter: true
+  JitterMaxMillis: 800   # random delay between 0–800ms per goroutine
+  EnableBatchStats: true
+  PersistRawTicks:
+    Enabled: false
+    Output: "redis"   # "redis" or "kafka"
+
+Streaming:
+  Enabled: true
+  Provider: "redis" # or "kafka"
+  Redis:
+    Address: "localhost:6379"
+    Stream: "ticks"
+  Kafka:
+    Brokers:
+      - "localhost:9092"
+    Topic: "tickdata"
