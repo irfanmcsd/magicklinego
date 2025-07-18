@@ -157,7 +157,7 @@ loop:
 			klineData := kAgg.ExtractOhlc(finalFlush...)
 			if len(klineData) > 0 {
 				log.Infof("📊 Extracted %d OHLC records", len(klineData))
-				err := db.SaveKlines(klineData)
+				err := db.SaveKlines(klineData, log)
 				if err != nil {
 					log.Errorf("❌ Failed to save klines: %v", err)
 				} else {

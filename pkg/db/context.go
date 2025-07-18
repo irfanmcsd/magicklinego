@@ -1,11 +1,13 @@
 package db
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/glebarez/sqlite"
 	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 
 	"scanner.magictradebot.com/config"
 	"scanner.magictradebot.com/models"
@@ -48,11 +50,29 @@ func AutoMigrate() error {
 	)
 }
 
-func SaveKlines(klineData []models.SymbolKlineData) error {
-	if len(klineData) == 0 {
+func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
+	if len(data) == 0 {
+		log.Info("📭 No klines to insert")
 		return nil
 	}
 
-	// Use CreateInBatches for performance
-	return GormDB.CreateInBatches(klineData, 100).Error
+	result := GormDB.Clauses(clause.OnConflict{
+		Columns: []clause.Column{
+			{Name: "symbol"},
+			{Name: "interval"},
+			{Name: "open_time"},
+		},
+		DoNothing: true, // skip duplicates
+	}).CreateInBatches(data, 100)
+
+	if result.Error != nil {
+		return fmt.Errorf("insert failed: %w", result.Error)
+	}
+
+	log.WithFields(logrus.Fields{
+		"attempted": len(data),
+		"inserted":  result.RowsAffected,
+	}).Info("✅ Saved klines")
+
+	return nil
 }
