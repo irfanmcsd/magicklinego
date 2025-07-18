@@ -6,6 +6,7 @@ import (
 	"github.com/glebarez/sqlite"
 	"gorm.io/gorm"
 
+	"scanner.magictradebot.com/config"
 	"scanner.magictradebot.com/models"
 )
 
@@ -13,8 +14,9 @@ var GormDB *gorm.DB
 
 func InitDB() {
 	var err error
-
-	GormDB, err = gorm.Open(sqlite.Open("./data.db"), &gorm.Config{})
+	conn := config.Settings.Database.ConnectionString
+	GormDB, err = gorm.Open(sqlite.Open(conn), &gorm.Config{})
+	//GormDB, err = gorm.Open(sqlite.Open("./data.db"), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to initialize GORM DB: %v", err)
 	}

@@ -1,0 +1,15 @@
+exchange: binance
+
+apiKey: "your_api_key"
+secretKey: "your_secret_key"
+passPhrase: "your_passphrase"
+
+symbol:
+  - BTCUSDT
+  - ETHUSDT
+  - SOLUSDT
+  - XRPUSDT
+
+database:
+  provider: sqlite
+  connectionString: "kline.db"

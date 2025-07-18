@@ -4,12 +4,15 @@ package main
 import (
 	"log"
 
+	"scanner.magictradebot.com/config"
 	"scanner.magictradebot.com/pkg/db"
 )
 
 func main() {
 
 	log.Println("📈 Starting Kline Scanner...")
+
+	config.LoadConfig("appsettings.yaml")
 
 	db.InitDB()
 
