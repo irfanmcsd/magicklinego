@@ -11,7 +11,6 @@ import (
 	"github.com/sirupsen/logrus"
 
 	"scanner.magictradebot.com/config"
-	"scanner.magictradebot.com/pkg/exchanges"
 )
 
 type TickerInfo struct {
@@ -22,7 +21,7 @@ type TickerInfo struct {
 	Timestamp          int64  `json:"timestamp"` // optional: for tracking freshness
 }
 
-func PushTickToStream(t *exchanges.TickerInfo, cfg config.StreamingConfig, log *logrus.Logger) {
+func PushTickToStream(t TickerInfo, cfg config.StreamingConfig, log *logrus.Logger) {
 	if !cfg.Enabled {
 		log.Debug("⏩ Streaming disabled")
 		return
@@ -45,7 +44,7 @@ func PushTickToStream(t *exchanges.TickerInfo, cfg config.StreamingConfig, log *
 	}
 }
 
-func pushToRedis(t *exchanges.TickerInfo, cfg struct {
+func pushToRedis(t TickerInfo, cfg struct {
 	Address string `yaml:"Address"`
 	Stream  string `yaml:"Stream"`
 }, payload []byte, log *logrus.Logger) {

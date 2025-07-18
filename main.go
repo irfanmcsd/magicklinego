@@ -134,9 +134,12 @@ loop:
 
 				kAgg.AddPrice(t.Symbol, price, volume)
 
-				// 📤 Optional: Push raw tick data
+				// 📤 Push raw tick to stream (via goroutine if streaming is IO-bound)
 				if streamCfg.Enabled {
-					go aggregator.PushTickToStream(t, streamCfg, log)
+					tick := ConvertToAggregatorTicker(t)
+					go aggregator.PushTickToStream(tick, streamCfg, log)
+					// OR use synchronous version if needed:
+					// aggregator.PushTickToStream(t, streamCfg, log)
 				}
 			}
 
@@ -165,6 +168,17 @@ loop:
 	}
 
 	log.Info("👋 App shutdown complete")
+}
+
+func ConvertToAggregatorTicker(t *exchanges.TickerInfo) aggregator.TickerInfo {
+	return aggregator.TickerInfo{
+		Symbol:             t.Symbol,
+		LastPrice:          t.LastPrice,
+		Vol24h:             t.Vol24h,
+		PriceChangePercent: t.Change24h,
+		Timestamp:          t.Timestamp,
+		// Add more fields if needed
+	}
 }
 
 // getFlushIntervals returns a list of intervals that need flushing at the current time

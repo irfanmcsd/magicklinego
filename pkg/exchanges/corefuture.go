@@ -3,6 +3,7 @@ package exchanges
 import (
 	"errors"
 	"strings"
+	"time"
 
 	"scanner.magictradebot.com/pkg/binance"
 	"scanner.magictradebot.com/pkg/bitget"
@@ -19,6 +20,7 @@ type TickerInfo struct {
 	Vol24h    string
 	Change24h string
 	Exchange  string
+	Timestamp int64 `json:"timestamp"`
 }
 
 // CoreFuturesAllTickers fetches all tickers from the specified exchange
@@ -40,6 +42,7 @@ func CoreFuturesAllTickers(exchange string) ([]*TickerInfo, error) {
 				Vol24h:    t.Volume,
 				Change24h: t.PriceChangePercent,
 				Exchange:  "binance",
+				Timestamp: time.Now().UnixMilli(),
 			})
 		}
 		return result, nil
@@ -59,6 +62,7 @@ func CoreFuturesAllTickers(exchange string) ([]*TickerInfo, error) {
 				Vol24h:    t.Vol24h,
 				Change24h: t.Change24hPct,
 				Exchange:  "okx",
+				Timestamp: time.Now().UnixMilli(),
 			})
 		}
 		return result, nil
@@ -78,6 +82,7 @@ func CoreFuturesAllTickers(exchange string) ([]*TickerInfo, error) {
 				Vol24h:    t.BaseVolume,
 				Change24h: t.Change24hPercent,
 				Exchange:  "bitget",
+				Timestamp: time.Now().UnixMilli(),
 			})
 		}
 		return result, nil
@@ -97,6 +102,7 @@ func CoreFuturesAllTickers(exchange string) ([]*TickerInfo, error) {
 				Vol24h:    t.Volume24h,
 				Change24h: t.Price24hPcnt,
 				Exchange:  "bybit",
+				Timestamp: time.Now().UnixMilli(),
 			})
 		}
 		return result, nil
