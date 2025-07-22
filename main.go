@@ -14,6 +14,7 @@ import (
 	"scanner.magictradebot.com/pkg/aggregator"
 	"scanner.magictradebot.com/pkg/db"
 	"scanner.magictradebot.com/pkg/exchanges"
+	"scanner.magictradebot.com/pkg/global"
 )
 
 func main() {
@@ -73,6 +74,9 @@ func main() {
 		}
 		log.Infof("📤 Streaming enabled using provider: %s", streamCfg.Provider)
 	}
+
+	global.InitStreamingClients(streamCfg)
+	defer global.ShutdownStreamingClients()
 
 loop:
 	for {

@@ -28,6 +28,8 @@ Streaming:
   Redis:
     Address: "localhost:6379"
     Stream: "ticks"
+    Password: "your_password"
+    DB: 0
   Kafka:
     Brokers:
       - "localhost:9092"

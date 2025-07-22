@@ -51,8 +51,10 @@ type StreamingConfig struct {
 	Provider string `yaml:"Provider"`
 
 	Redis struct {
-		Address string `yaml:"Address"`
-		Stream  string `yaml:"Stream"`
+		Address  string `yaml:"Address"`
+		Stream   string `yaml:"Stream"`
+		Password string `yaml:"Password"` // Optional
+		DB       int    `yaml:"DB"`       // Optional, default is 0
 	} `yaml:"Redis"`
 
 	Kafka struct {
