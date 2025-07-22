@@ -55,7 +55,7 @@ func main() {
 	rotator := aggregator.NewSymbolRotator(symbols, batchSize)
 
 	// 📊 Initialize Kline aggregator
-	kAgg := aggregator.NewKlineAggregator()
+	kAgg := aggregator.NewKlineAggregator(log, config.Settings.Debug)
 
 	// ⏱️ Setup ticker
 	refreshInterval := 5 * time.Second
@@ -151,6 +151,9 @@ loop:
 			now := time.Now().UTC().Truncate(time.Second)
 			flushNow := uniqueStrings(getFlushIntervals(now))
 
+			if kAgg.Debug {
+				kAgg.Logger.Infof("[Debug] Flushing intervals: %v", flushNow)
+			}
 			// 📅 Extract OHLCs
 			klineData := kAgg.ExtractOhlc(flushNow...)
 			if len(klineData) > 0 {

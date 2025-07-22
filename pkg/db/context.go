@@ -56,6 +56,56 @@ func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
 		return nil
 	}
 
+	// Group data by symbol and interval for detailed logging
+	type logKey struct {
+		Symbol   string
+		Interval string
+	}
+
+	logSummary := make(map[logKey]int)
+
+	for _, k := range data {
+		logKey := logKey{Symbol: k.Symbol, Interval: k.Interval}
+		logSummary[logKey]++
+	}
+
+	result := GormDB.Clauses(clause.OnConflict{
+		Columns: []clause.Column{
+			{Name: "symbol"},
+			{Name: "interval"},
+			{Name: "open_time"},
+		},
+		DoNothing: true,
+	}).CreateInBatches(data, 100)
+
+	if result.Error != nil {
+		return fmt.Errorf("insert failed: %w", result.Error)
+	}
+
+	for key, count := range logSummary {
+		log.WithFields(logrus.Fields{
+			"symbol":    key.Symbol,
+			"interval":  key.Interval,
+			"attempted": count,
+			"inserted":  result.RowsAffected, // Optional: may not match exactly per group
+		}).Infof("✅ Saved klines for %s [%s]", key.Symbol, key.Interval)
+	}
+
+	log.WithFields(logrus.Fields{
+		"attempted": len(data),
+		"inserted":  result.RowsAffected,
+	}).Info("✅ Saved all OHLC entries to DB")
+
+	return nil
+}
+
+/*
+func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
+	if len(data) == 0 {
+		log.Info("📭 No klines to insert")
+		return nil
+	}
+
 	result := GormDB.Clauses(clause.OnConflict{
 		Columns: []clause.Column{
 			{Name: "symbol"},
@@ -76,3 +126,4 @@ func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
 
 	return nil
 }
+*/

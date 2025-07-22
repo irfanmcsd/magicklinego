@@ -36,6 +36,7 @@ type AppSettings struct {
 	Symbols    []string           `yaml:"symbol"`
 	Aggregator AggregatorSettings `yaml:"Aggregator"`
 	Streaming  StreamingConfig    `yaml:"Streaming"`
+	Debug      bool               `yaml:"Debug"`
 
 	Database struct {
 		Provider         string `yaml:"provider"`
