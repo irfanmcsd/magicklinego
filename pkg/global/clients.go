@@ -3,10 +3,12 @@ package global
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/segmentio/kafka-go"
+	"github.com/sirupsen/logrus"
 	"scanner.magictradebot.com/config"
 )
 
@@ -51,4 +53,26 @@ func ShutdownStreamingClients() {
 	if KafkaWriter != nil {
 		_ = KafkaWriter.Close()
 	}
+}
+
+func ValidateStreamingConfig(cfg config.StreamingConfig, log *logrus.Logger) error {
+	if !cfg.Enabled {
+		log.Info("🔇 Streaming is disabled.")
+		return nil
+	}
+
+	switch cfg.Provider {
+	case "redis":
+		if cfg.Redis.Address == "" || cfg.Redis.Stream == "" {
+			return fmt.Errorf("❌ Redis configuration is incomplete")
+		}
+	case "kafka":
+		if len(cfg.Kafka.Brokers) == 0 || cfg.Kafka.Topic == "" {
+			return fmt.Errorf("❌ Kafka configuration is incomplete")
+		}
+	default:
+		return fmt.Errorf("❌ Unknown streaming provider: %s", cfg.Provider)
+	}
+
+	return nil
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 	"os/signal"
@@ -18,6 +19,13 @@ import (
 )
 
 func main() {
+	// 🔒 Panic protection
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("🔥 Panic recovered: %v\n", r)
+		}
+	}()
+
 	// 🧾 Initialize logger
 	loggerResult, _ := config.InitLogger(true)
 	log := loggerResult.Logger
@@ -46,10 +54,10 @@ func main() {
 	batchSize := 50
 	rotator := aggregator.NewSymbolRotator(symbols, batchSize)
 
-	// 📊 Initialize kline aggregator
+	// 📊 Initialize Kline aggregator
 	kAgg := aggregator.NewKlineAggregator()
 
-	// ⏱️ Ticker every 5 seconds
+	// ⏱️ Setup ticker
 	refreshInterval := 5 * time.Second
 	ticker := time.NewTicker(refreshInterval)
 	defer ticker.Stop()
@@ -58,48 +66,39 @@ func main() {
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
 
-	log.Infof("⏳ Starting periodic fetch loop for exchange: %s", exchange)
+	log.WithField("exchange", exchange).Info("⏳ Starting periodic fetch loop")
 
-	// ✅ Validate streaming config if enabled
+	// ✅ Validate and initialize streaming
 	streamCfg := config.Settings.Streaming
-	if streamCfg.Enabled {
-		if streamCfg.Provider != "redis" && streamCfg.Provider != "kafka" {
-			log.Fatalf("❌ Invalid streaming provider: %s", streamCfg.Provider)
-		}
-		if streamCfg.Provider == "redis" && streamCfg.Redis.Address == "" {
-			log.Fatal("❌ Redis streaming enabled but Redis.Address is empty")
-		}
-		if streamCfg.Provider == "kafka" && len(streamCfg.Kafka.Brokers) == 0 {
-			log.Fatal("❌ Kafka streaming enabled but no Kafka.Brokers specified")
-		}
-		log.Infof("📤 Streaming enabled using provider: %s", streamCfg.Provider)
+	if err := global.ValidateStreamingConfig(streamCfg, log); err != nil {
+		log.Fatal(err)
 	}
 
-	global.InitStreamingClients(streamCfg)
-	defer global.ShutdownStreamingClients()
+	if streamCfg.Enabled {
+		global.InitStreamingClients(streamCfg)
+		defer global.ShutdownStreamingClients()
+	}
 
 loop:
 	for {
 		select {
 		case <-ticker.C:
-			// 🌪️ Apply random jitter (up to 500ms)
-			jitter := time.Duration(rand.Intn(500)) * time.Millisecond
-			time.Sleep(jitter)
+			// 🌪️ Random jitter (up to 500ms)
+			time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
 
-			// ♻️ Rotate next batch
+			// ♻️ Get next batch of symbols
 			batch := rotator.NextBatch()
 			if len(batch) == 0 {
 				log.Warn("⚠️ No symbols in batch to process")
 				continue
 			}
 
-			// 📥 Fetch all tickers
+			// 📥 Fetch tickers
 			tickers, err := exchanges.CoreFuturesAllTickers(exchange)
 			if err != nil {
 				log.Errorf("❌ Failed to fetch tickers: %v", err)
 				continue
 			}
-			log.Infof("📥 Fetched %d tickers from %s", len(tickers), exchange)
 
 			// 🔍 Filter tickers based on batch
 			symbolSet := make(map[string]bool)
@@ -107,14 +106,18 @@ loop:
 				symbolSet[strings.ToUpper(sym)] = true
 			}
 
-			filtered := []*exchanges.TickerInfo{}
+			filtered := make([]*exchanges.TickerInfo, 0, len(batch))
 			for _, t := range tickers {
 				if symbolSet[strings.ToUpper(t.Symbol)] {
 					filtered = append(filtered, t)
 				}
 			}
 			tickers = filtered
-			log.Infof("🔄 Rotated batch matched: %d symbols", len(tickers))
+
+			log.WithFields(logrus.Fields{
+				"fetched":   len(tickers),
+				"requested": len(batch),
+			}).Info("📥 Batch ticker fetch complete")
 
 			// ➕ Feed into aggregator + optional streaming
 			for _, t := range tickers {
@@ -138,16 +141,13 @@ loop:
 
 				kAgg.AddPrice(t.Symbol, price, volume)
 
-				// 📤 Push raw tick to stream (via goroutine if streaming is IO-bound)
 				if streamCfg.Enabled {
 					tick := ConvertToAggregatorTicker(t)
 					go aggregator.PushTickToStream(tick, streamCfg, log)
-					// OR use synchronous version if needed:
-					// aggregator.PushTickToStream(t, streamCfg, log)
 				}
 			}
 
-			// 🕰️ Determine flush intervals
+			// ⏱️ Determine flush intervals
 			now := time.Now().UTC().Truncate(time.Second)
 			flushNow := uniqueStrings(getFlushIntervals(now))
 
@@ -156,9 +156,7 @@ loop:
 			if len(klineData) > 0 {
 				log.Infof("📊 Extracted %d OHLC records", len(klineData))
 
-				// 💾 Save to DB
-				err := db.SaveKlines(klineData, log)
-				if err != nil {
+				if err := db.SaveKlines(klineData, log); err != nil {
 					log.Errorf("❌ Failed to save klines: %v", err)
 				} else {
 					log.Infof("✅ Saved %d OHLC entries to DB", len(klineData))
