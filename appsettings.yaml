@@ -1,8 +1,4 @@
-exchange: binance
-
-apiKey: "your_api_key"
-secretKey: "your_secret_key"
-passPhrase: "your_passphrase"
+exchange: binance # fetch ticker info from binance. supported exchanges binance, okx, bybit, bitget
 
 symbol:
   - BTCUSDT

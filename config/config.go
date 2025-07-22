@@ -33,9 +33,6 @@ type AggregatorSettings struct {
 
 type AppSettings struct {
 	Exchange   string             `yaml:"exchange"`
-	ApiKey     string             `yaml:"apiKey"`
-	SecretKey  string             `yaml:"secretKey"`
-	PassPhrase string             `yaml:"passPhrase"`
 	Symbols    []string           `yaml:"symbol"`
 	Aggregator AggregatorSettings `yaml:"Aggregator"`
 	Streaming  StreamingConfig    `yaml:"Streaming"`
