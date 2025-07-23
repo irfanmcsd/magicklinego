@@ -1,13 +1,14 @@
 exchange: binance # fetch ticker info from binance. supported exchanges binance, okx, bybit, bitget
-
+instance: binance
 symbol:
   - BTCUSDT
 
 Debug: true
 
 database:
-  provider: sqlite
-  connectionString: "./data/kline.db"
+  provider: postgresql  # sqlite or postgresql 
+  connectionString: "host=localhost port=5432 user=postgres password=saimajj dbname=kline_db sslmode=disable" # for sqlight ./data/kline.db
+
 
 Aggregator:
   EnableJitter: true

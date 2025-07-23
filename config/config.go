@@ -33,6 +33,7 @@ type AggregatorSettings struct {
 
 type AppSettings struct {
 	Exchange   string             `yaml:"exchange"`
+	Instance   string             `mapstructure:"instance"`
 	Symbols    []string           `yaml:"symbol"`
 	Aggregator AggregatorSettings `yaml:"Aggregator"`
 	Streaming  StreamingConfig    `yaml:"Streaming"`

@@ -1,0 +1,22 @@
+[36mINFO[0m[2025-07-24T01:03:18+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-24T01:03:18+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-24T01:03:18+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-24T01:03:18+05:00] ✅ SQLite connected using file: ./data/kline.db 
+[36mINFO[0m[2025-07-24T01:03:18+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-24T01:03:18+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-24T01:03:18+05:00] ⏳ Starting periodic fetch loop                [36mexchange[0m=binance
+[36mINFO[0m[2025-07-24T01:03:18+05:00] 🔇 Streaming is disabled.                     
+[36mINFO[0m[2025-07-24T01:03:24+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-24T01:03:24+05:00] ⏱️ Now: 20:03:24 (1753300980000)             
+[36mINFO[0m[2025-07-24T01:03:24+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-24T01:03:24+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-24T01:03:29+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-24T01:03:29+05:00] ⏱️ Now: 20:03:29 (1753300980000)             
+[36mINFO[0m[2025-07-24T01:03:29+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-24T01:03:29+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-24T01:03:34+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-24T01:03:34+05:00] ⏱️ Now: 20:03:34 (1753300980000)             
+[36mINFO[0m[2025-07-24T01:03:34+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-24T01:03:34+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-24T01:03:35+05:00] 🛑 Shutdown signal received                   
+[36mINFO[0m[2025-07-24T01:03:35+05:00] 👋 App shutdown complete                      

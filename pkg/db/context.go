@@ -5,7 +5,9 @@ import (
 	"os"
 
 	"github.com/glebarez/sqlite"
+	_ "github.com/lib/pq" // <-- Add this for PostgreSQL
 	"github.com/sirupsen/logrus"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 
@@ -16,19 +18,32 @@ import (
 var GormDB *gorm.DB
 
 func InitDB(log *logrus.Logger) {
-	dbFile := config.Settings.Database.ConnectionString
+	provider := config.Settings.Database.Provider
+	conn := config.Settings.Database.ConnectionString
 
-	// Check if DB file exists, log only (do NOT create)
-	if _, err := os.Stat(dbFile); os.IsNotExist(err) {
-		log.Warnf("⚠️  Database file '%s' does not exist. It will be created on first use by SQLite.", dbFile)
-	} else if err != nil {
-		log.Fatalf("❌ Failed to stat database file: %v", err)
-	}
+	var db *gorm.DB
+	var err error
 
-	// GORM will NOT recreate existing files, only open them
-	db, err := gorm.Open(sqlite.Open(dbFile), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("❌ Failed to open GORM SQLite DB: %v", err)
+	switch provider {
+	case "sqlite":
+		if _, err := os.Stat(conn); os.IsNotExist(err) {
+			log.Warnf("⚠️  SQLite DB file '%s' does not exist. Will be created on first write.", conn)
+		}
+		db, err = gorm.Open(sqlite.Open(conn), &gorm.Config{})
+		if err != nil {
+			log.Fatalf("❌ Failed to open SQLite DB: %v", err)
+		}
+		log.Infof("✅ SQLite connected: %s", conn)
+
+	case "postgresql":
+		db, err = gorm.Open(postgres.Open(conn), &gorm.Config{})
+		if err != nil {
+			log.Fatalf("❌ Failed to connect to PostgreSQL: %v", err)
+		}
+		log.Infof("✅ PostgreSQL connected")
+
+	default:
+		log.Fatalf("❌ Unknown DB provider: %s", provider)
 	}
 
 	sqlDB, err := db.DB()
@@ -40,7 +55,6 @@ func InitDB(log *logrus.Logger) {
 	}
 
 	GormDB = db
-	log.Infof("✅ SQLite connected using file: %s", dbFile)
 }
 
 func AutoMigrate() error {
@@ -49,11 +63,15 @@ func AutoMigrate() error {
 		&models.SymbolKlineData{},
 	)
 }
-
-func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
+func SaveKlines(data []models.SymbolKlineData, instance string, log *logrus.Logger) error {
 	if len(data) == 0 {
-		log.Info("📭 No klines to insert")
+		log.WithField("instance", instance).Info("📭 No klines to insert")
 		return nil
+	}
+
+	// Set instance field in all klines
+	for i := range data {
+		data[i].Instance = instance
 	}
 
 	// Group data by symbol and interval for detailed logging
@@ -84,14 +102,16 @@ func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
 
 	for key, count := range logSummary {
 		log.WithFields(logrus.Fields{
+			"instance":  instance,
 			"symbol":    key.Symbol,
 			"interval":  key.Interval,
 			"attempted": count,
-			"inserted":  result.RowsAffected, // Optional: may not match exactly per group
+			"inserted":  result.RowsAffected, // optional per group
 		}).Infof("✅ Saved klines for %s [%s]", key.Symbol, key.Interval)
 	}
 
 	log.WithFields(logrus.Fields{
+		"instance":  instance,
 		"attempted": len(data),
 		"inserted":  result.RowsAffected,
 	}).Info("✅ Saved all OHLC entries to DB")

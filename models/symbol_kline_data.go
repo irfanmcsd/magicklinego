@@ -14,6 +14,7 @@ type SymbolKlineData struct {
 	Low        float64 `gorm:"type:decimal(18,8)"`
 	Close      float64 `gorm:"type:decimal(18,8)"`
 	OpenTime   int64   `gorm:"uniqueIndex:idx_symbol_interval_time"`
+	Instance   string  `gorm:"index"`
 	Volume     float64
 	TradeCount int64
 }

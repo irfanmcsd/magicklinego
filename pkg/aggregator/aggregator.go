@@ -28,32 +28,35 @@ func (a *KlineAggregator) AddPrice(symbol string, price float64, volume float64)
 		Volume: volume,
 	}
 
-	// Check if we already have a tick at this timestamp
-	exists := false
-	for _, t := range a.tickBuffer[symbol] {
-		if t.Time == truncated {
-			exists = true
-			break
-		}
+	// Ensure symbol entry exists
+	if _, exists := a.tickBuffer[symbol]; !exists {
+		a.tickBuffer[symbol] = make(map[string][]TickData)
 	}
 
-	if !exists {
-		a.tickBuffer[symbol] = append(a.tickBuffer[symbol], tick)
-
-		if a.Debug {
-			a.Logger.Printf("[DEBUG] Added NEW tick for %s: %.4f @ %s",
-				symbol, price, time.UnixMilli(truncated).UTC().Format("15:04:05"))
+	// Add tick to every interval for that symbol
+	for interval := range a.intervalToMs {
+		intervalTicks := a.tickBuffer[symbol][interval]
+		// Check if tick already exists
+		exists := false
+		for _, t := range intervalTicks {
+			if t.Time == truncated {
+				exists = true
+				break
+			}
 		}
-	} else if a.Debug {
-		a.Logger.Printf("[DEBUG] Skipped duplicate tick for %s at %s",
-			symbol, time.UnixMilli(truncated).UTC().Format("15:04:05"))
+		if !exists {
+			a.tickBuffer[symbol][interval] = append(intervalTicks, tick)
+			if a.Debug {
+				//a.Logger.Printf("[DEBUG] Added tick to %s [%s]: %.2f", symbol, interval, price)
+			}
+		}
 	}
 }
 
 type KlineAggregator struct {
-	tickBuffer    map[string][]TickData
+	tickBuffer    map[string]map[string][]TickData // ✅ Changed
 	intervalToMs  map[string]int64
-	maxIntervalMs int64 // Track longest interval
+	maxIntervalMs int64
 	lock          sync.Mutex
 	Debug         bool
 	Logger        *logrus.Logger
@@ -61,18 +64,22 @@ type KlineAggregator struct {
 
 func NewKlineAggregator(logger *logrus.Logger, debugMode bool) *KlineAggregator {
 	intervals := map[string]int64{
-		"1m":  60_000,
-		"3m":  3 * 60_000,
-		"5m":  5 * 60_000,
-		"15m": 15 * 60_000,
-		"30m": 30 * 60_000,
-		"1h":  60 * 60_000,
-		"2h":  2 * 60 * 60_000,
-		"4h":  4 * 60 * 60_000,
-		"12h": 12 * 60 * 60_000,
-		"1d":  24 * 60 * 60_000,
-		"2d":  2 * 24 * 60 * 60_000,
-		"3d":  3 * 24 * 60 * 60_000,
+		"1m": 60_000,
+	}
+
+	return &KlineAggregator{
+		tickBuffer:    map[string]map[string][]TickData{"1m": {}},
+		intervalToMs:  intervals,
+		maxIntervalMs: 60_000,
+		Logger:        logger,
+		Debug:         debugMode,
+	}
+}
+
+/*
+func NewKlineAggregator(logger *logrus.Logger, debugMode bool) *KlineAggregator {
+	intervals := map[string]int64{
+		"1m": 60_000,
 	}
 
 	// Find max interval
@@ -84,104 +91,85 @@ func NewKlineAggregator(logger *logrus.Logger, debugMode bool) *KlineAggregator 
 	}
 
 	return &KlineAggregator{
-		tickBuffer:    make(map[string][]TickData),
+		tickBuffer:    make(map[string]map[string][]TickData),
 		intervalToMs:  intervals,
 		maxIntervalMs: maxIntervalMs,
 		Logger:        logger,
 		Debug:         debugMode,
 	}
-}
+}*/
 
-func (a *KlineAggregator) ExtractOhlc(now int64, intervals ...string) []models.SymbolKlineData {
+func (a *KlineAggregator) ExtractOhlc(intervals ...string) []models.SymbolKlineData {
 	a.lock.Lock()
 	defer a.lock.Unlock()
 
+	now := time.Now().UnixMilli()
 	var result []models.SymbolKlineData
 
-	for symbol, ticks := range a.tickBuffer {
-		if len(ticks) == 0 {
-			continue
-		}
-
-		sort.Slice(ticks, func(i, j int) bool {
-			return ticks[i].Time < ticks[j].Time
-		})
-
+	for symbol, intervalMap := range a.tickBuffer {
 		for _, interval := range intervals {
+			ticks, exists := intervalMap[interval]
+			if !exists || len(ticks) == 0 {
+				continue
+			}
+
+			sort.Slice(ticks, func(i, j int) bool {
+				return ticks[i].Time < ticks[j].Time
+			})
+
 			intervalMs, ok := a.intervalToMs[interval]
 			if !ok {
 				continue
 			}
 
-			// Precise boundary calculation
-			candleEnd := (now / intervalMs) * intervalMs
+			candleEnd := now - (now % intervalMs)
 			candleStart := candleEnd - intervalMs
 
-			if a.Debug && len(ticks) > 0 {
-				first := time.UnixMilli(ticks[0].Time).UTC().Format("15:04:05")
-				last := time.UnixMilli(ticks[len(ticks)-1].Time).UTC().Format("15:04:05")
-				a.Logger.Printf("[DEBUG] %s has %d ticks from %s to %s UTC",
-					symbol, len(ticks), first, last)
-			}
-			// Debug with local time
-			if a.Debug {
-				startUTC := time.UnixMilli(candleStart).UTC().Format("15:04:05")
-				endUTC := time.UnixMilli(candleEnd).UTC().Format("15:04:05")
-				startLocal := time.UnixMilli(candleStart).Local().Format("15:04:05")
-				endLocal := time.UnixMilli(candleEnd).Local().Format("15:04:05")
+			startIdx := sort.Search(len(ticks), func(i int) bool {
+				return ticks[i].Time >= candleStart
+			})
 
-				a.Logger.Printf(
-					"[DEBUG] %s %s candle: UTC(%s - %s) Local(%s - %s)",
-					symbol, interval, startUTC, endUTC, startLocal, endLocal,
-				)
-			}
+			endIdx := sort.Search(len(ticks), func(i int) bool {
+				return ticks[i].Time >= candleEnd
+			})
 
-			// Find ticks efficiently
-			var group []TickData
-			for _, tick := range ticks {
-				if tick.Time >= candleStart && tick.Time < candleEnd {
-					group = append(group, tick)
-				}
-			}
-
-			if len(group) == 0 {
-				if a.Debug {
-					a.Logger.Printf(
-						"[DEBUG] No ticks for %s %s in [%d-%d]",
-						symbol, interval, candleStart, candleEnd,
-					)
-				}
+			if startIdx == endIdx {
 				continue
 			}
 
+			group := ticks[startIdx:endIdx]
 			kline := a.buildKline(symbol, interval, group, candleStart)
 			result = append(result, kline)
+
+			// Remove used ticks for this interval
+			a.tickBuffer[symbol][interval] = ticks[endIdx:]
 		}
 
-		// Cleanup with buffer
+		// ✅ Clean up old ticks for this symbol
 		a.cleanupOldTicks(symbol, now)
 	}
+
 	return result
 }
 
 func (a *KlineAggregator) cleanupOldTicks(symbol string, now int64) {
-	// Keep 3x max interval to ensure coverage for all timeframes
-	retentionPeriod := a.maxIntervalMs * 3
-	oldestValid := now - retentionPeriod
+	retention := a.maxIntervalMs * 3
+	oldestValid := now - retention
 
-	filtered := []TickData{}
-	for _, tick := range a.tickBuffer[symbol] {
-		if tick.Time >= oldestValid {
-			filtered = append(filtered, tick)
+	for interval, ticks := range a.tickBuffer[symbol] {
+		filtered := []TickData{}
+		for _, tick := range ticks {
+			if tick.Time >= oldestValid {
+				filtered = append(filtered, tick)
+			}
+		}
+		a.tickBuffer[symbol][interval] = filtered
+
+		if a.Debug && len(ticks) != len(filtered) {
+			a.Logger.Printf("[DEBUG] Cleaned %d old ticks from %s [%s]", len(ticks)-len(filtered), symbol, interval)
 		}
 	}
 
-	if a.Debug && len(a.tickBuffer[symbol]) != len(filtered) {
-		a.Logger.Printf("[DEBUG] Cleaned %d old ticks from %s (kept %d)",
-			len(a.tickBuffer[symbol])-len(filtered), symbol, len(filtered))
-	}
-
-	a.tickBuffer[symbol] = filtered
 }
 
 // In buildKline function - use sorted group directly

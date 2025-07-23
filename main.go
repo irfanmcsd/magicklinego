@@ -19,6 +19,7 @@ import (
 )
 
 func main() {
+
 	// 🔒 Panic protection
 	defer func() {
 		if r := recover(); r != nil {
@@ -56,12 +57,6 @@ func main() {
 
 	// 📊 Initialize Kline aggregator
 	kAgg := aggregator.NewKlineAggregator(log, config.Settings.Debug)
-
-	// After creating kAgg
-	/*startTime := time.Now()
-	maxIntervalMs := kAgg.GetMaxIntervalMs() // Direct getter call
-	maxIntervalDuration := time.Duration(maxIntervalMs) * time.Millisecond
-	log.Infof("⏳ Initial data collection period: %s", maxIntervalDuration)*/
 
 	// ⏱️ Setup ticker
 	refreshInterval := 5 * time.Second
@@ -154,8 +149,7 @@ loop:
 			}
 
 			// ⏱️ Get current time
-			now := time.Now().UTC()
-			unixMillis := now.UnixNano() / int64(time.Millisecond)
+			now := time.Now().UTC().Truncate(time.Second)
 
 			// 📅 Determine flush intervals
 			flushNow := getFlushIntervals(now, log)
@@ -166,12 +160,12 @@ loop:
 
 			// 🔄 Process intervals if any
 			if len(flushNow) > 0 {
-				klineData := kAgg.ExtractOhlc(unixMillis, flushNow...)
+				klineData := kAgg.ExtractOhlc(flushNow...)
 
 				if len(klineData) > 0 {
 					log.Infof("📊 Extracted %d OHLC records", len(klineData))
 
-					if err := db.SaveKlines(klineData, log); err != nil {
+					if err := db.SaveKlines(klineData, config.Settings.Instance, log); err != nil {
 						log.Errorf("❌ Failed to save klines: %v", err)
 					} else {
 						log.Infof("✅ Saved %d OHLC entries to DB", len(klineData))
@@ -204,126 +198,13 @@ func ConvertToAggregatorTicker(t *exchanges.TickerInfo) aggregator.TickerInfo {
 }
 
 func getFlushIntervals(now time.Time, log *logrus.Logger) []string {
-	min := now.Minute()
-	hour := now.Hour()
-	intervals := []string{"1m"} // Always include 1m
+	aligned := now.Truncate(time.Minute).UnixMilli()
 
-	log.Infof("⏱️ Processing at minute %d, hour %d", min, hour)
+	log.Infof("⏱️ Now: %s (%d)", now.UTC().Format("15:04:05"), aligned)
+	log.Infof("📦 Returning intervals: [1m]")
 
-	// Add intervals based on minute alignment
-	if min%3 == 0 {
-		intervals = append(intervals, "3m")
-	}
-	if min%5 == 0 {
-		intervals = append(intervals, "5m")
-	}
-	if min%15 == 0 {
-		intervals = append(intervals, "15m")
-	}
-	if min%30 == 0 {
-		intervals = append(intervals, "30m")
-	}
-
-	// Hourly intervals
-	if min == 0 {
-		intervals = append(intervals, "1h")
-		if hour%2 == 0 {
-			intervals = append(intervals, "2h")
-		}
-		if hour%4 == 0 {
-			intervals = append(intervals, "4h")
-		}
-		if hour%12 == 0 {
-			intervals = append(intervals, "12h")
-		}
-	}
-
-	// Daily intervals
-	if hour == 0 && min == 0 {
-		intervals = append(intervals, "1d")
-		day := now.Day()
-		if day%2 == 1 {
-			intervals = append(intervals, "2d")
-		}
-		if day%3 == 1 {
-			intervals = append(intervals, "3d")
-		}
-	}
-
-	// Optional future weekly interval
-	// if now.Weekday() == time.Monday && hour == 0 && min == 0 {
-	//     flush = append(flush, "1w")
-	// }
-
-	intervals = uniqueStrings(intervals)
-	log.Infof("📦 Returning intervals: %v", intervals)
-	return intervals
+	return []string{"1m"}
 }
-
-// getFlushIntervals returns a list of intervals that need flushing at the current time
-/*func getFlushIntervals(now time.Time, log *logrus.Logger) []string {
-	var flush []string
-	min := now.Minute()
-	sec := now.Second()
-	hour := now.Hour()
-
-	log.Infof("✅ Second %d, Minute %d, Hour %d", sec, min, hour)
-
-	if sec > 4 {
-		log.Info("🔄 Collecting initial data... skipping flush")
-		return flush // Skip flush but keep collecting data
-	}
-
-	// Always include 1m
-	flush = append(flush, "1m")
-
-	log.Infof("✅ 3 Minute Comp %d, 5 Minute Comp %d, 15 Minute Comp %d, 30 Minute Comp %d", min%3, min%5, min%15, min%30)
-
-	if min%3 == 0 {
-		flush = append(flush, "3m")
-	}
-	if min%5 == 0 {
-		flush = append(flush, "5m")
-	}
-	if min%15 == 0 {
-		flush = append(flush, "15m")
-	}
-	if min%30 == 0 {
-		flush = append(flush, "30m")
-	}
-
-	if min == 0 {
-		flush = append(flush, "1h")
-		if hour%2 == 0 {
-			flush = append(flush, "2h")
-		}
-		if hour%4 == 0 {
-			flush = append(flush, "4h")
-		}
-		if hour%12 == 0 {
-			flush = append(flush, "12h")
-		}
-	}
-
-	if hour == 0 && min == 0 {
-		flush = append(flush, "1d")
-		if now.Day()%2 == 1 {
-			flush = append(flush, "2d")
-		}
-		if now.Day()%3 == 1 {
-			flush = append(flush, "3d")
-		}
-	}
-
-	// Optional future weekly interval
-	// if now.Weekday() == time.Monday && hour == 0 && min == 0 {
-	//     flush = append(flush, "1w")
-	// }
-
-	flush = uniqueStrings(flush)
-	log.Infof("📦 Flush intervals: %v", flush)
-	return flush
-}*/
 
 // uniqueStrings returns a deduplicated slice
 func uniqueStrings(input []string) []string {
