@@ -3,7 +3,7 @@ exchange: binance # fetch ticker info from binance. supported exchanges binance,
 symbol:
   - BTCUSDT
 
-Debug: false
+Debug: true
 
 database:
   provider: sqlite

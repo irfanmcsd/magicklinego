@@ -98,32 +98,3 @@ func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
 
 	return nil
 }
-
-/*
-func SaveKlines(data []models.SymbolKlineData, log *logrus.Logger) error {
-	if len(data) == 0 {
-		log.Info("📭 No klines to insert")
-		return nil
-	}
-
-	result := GormDB.Clauses(clause.OnConflict{
-		Columns: []clause.Column{
-			{Name: "symbol"},
-			{Name: "interval"},
-			{Name: "open_time"},
-		},
-		DoNothing: true, // skip duplicates
-	}).CreateInBatches(data, 100)
-
-	if result.Error != nil {
-		return fmt.Errorf("insert failed: %w", result.Error)
-	}
-
-	log.WithFields(logrus.Fields{
-		"attempted": len(data),
-		"inserted":  result.RowsAffected,
-	}).Info("✅ Saved klines")
-
-	return nil
-}
-*/
