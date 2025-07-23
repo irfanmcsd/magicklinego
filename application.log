@@ -18520,3 +18520,543 @@
 [36mINFO[0m[2025-07-23T23:11:17+05:00] ✅ Saved 1 OHLC entries to DB                 
 [36mINFO[0m[2025-07-23T23:11:18+05:00] 🛑 Shutdown signal received                   
 [36mINFO[0m[2025-07-23T23:11:18+05:00] 👋 App shutdown complete                      
+[36mINFO[0m[2025-07-23T23:17:55+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-23T23:17:55+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-23T23:17:55+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-23T23:17:55+05:00] ✅ SQLite connected using file: ./data/kline.db 
+[36mINFO[0m[2025-07-23T23:17:55+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-23T23:17:55+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-23T23:17:55+05:00] ⏳ Starting periodic fetch loop                [36mexchange[0m=binance
+[36mINFO[0m[2025-07-23T23:17:55+05:00] 🔇 Streaming is disabled.                     
+[36mINFO[0m[2025-07-23T23:18:01+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118066.4000 @ 18:18:01 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:01+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] BTCUSDT has 1 ticks from 18:18:01 to 18:18:01 UTC 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] BTCUSDT has 1 ticks from 18:18:01 to 18:18:01 UTC 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:01+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118066.5000 @ 18:18:06 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:06+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] BTCUSDT has 2 ticks from 18:18:01 to 18:18:06 UTC 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] BTCUSDT has 2 ticks from 18:18:01 to 18:18:06 UTC 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:06+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118048.8000 @ 18:18:11 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:11+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] BTCUSDT has 3 ticks from 18:18:01 to 18:18:11 UTC 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] BTCUSDT has 3 ticks from 18:18:01 to 18:18:11 UTC 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:11+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117986.7000 @ 18:18:16 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:16+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] BTCUSDT has 4 ticks from 18:18:01 to 18:18:16 UTC 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] BTCUSDT has 4 ticks from 18:18:01 to 18:18:16 UTC 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:16+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117986.8000 @ 18:18:21 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:21+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] BTCUSDT has 5 ticks from 18:18:01 to 18:18:21 UTC 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] BTCUSDT has 5 ticks from 18:18:01 to 18:18:21 UTC 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:21+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118004.6000 @ 18:18:26 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:26+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] BTCUSDT has 6 ticks from 18:18:01 to 18:18:26 UTC 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] BTCUSDT has 6 ticks from 18:18:01 to 18:18:26 UTC 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:26+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118016.2000 @ 18:18:31 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:31+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] BTCUSDT has 7 ticks from 18:18:01 to 18:18:31 UTC 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] BTCUSDT has 7 ticks from 18:18:01 to 18:18:31 UTC 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:31+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117998.9000 @ 18:18:36 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:36+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] BTCUSDT has 8 ticks from 18:18:01 to 18:18:36 UTC 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] BTCUSDT has 8 ticks from 18:18:01 to 18:18:36 UTC 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:36+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117979.1000 @ 18:18:41 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:41+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] BTCUSDT has 9 ticks from 18:18:01 to 18:18:41 UTC 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] BTCUSDT has 9 ticks from 18:18:01 to 18:18:41 UTC 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:41+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117979.1000 @ 18:18:45 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:45+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] BTCUSDT has 10 ticks from 18:18:01 to 18:18:45 UTC 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] BTCUSDT has 10 ticks from 18:18:01 to 18:18:45 UTC 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:45+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117999.9000 @ 18:18:51 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:51+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] BTCUSDT has 11 ticks from 18:18:01 to 18:18:51 UTC 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] BTCUSDT has 11 ticks from 18:18:01 to 18:18:51 UTC 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:51+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117999.9000 @ 18:18:56 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] ⏱️ Processing at minute 18, hour 18          
+[36mINFO[0m[2025-07-23T23:18:56+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] BTCUSDT has 12 ticks from 18:18:01 to 18:18:56 UTC 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:17:00 - 18:18:00) Local(23:17:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] No ticks for BTCUSDT 1m in [1753294620000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] BTCUSDT has 12 ticks from 18:18:01 to 18:18:56 UTC 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:15:00 - 18:18:00) Local(23:15:00 - 23:18:00) 
+[36mINFO[0m[2025-07-23T23:18:56+05:00] [DEBUG] No ticks for BTCUSDT 3m in [1753294500000-1753294680000] 
+[36mINFO[0m[2025-07-23T23:19:01+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:01+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118005.8000 @ 18:19:01 
+[36mINFO[0m[2025-07-23T23:19:01+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:01+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:01+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:01+05:00] [DEBUG] BTCUSDT has 13 ticks from 18:18:01 to 18:19:01 UTC 
+[36mINFO[0m[2025-07-23T23:19:01+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:01+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:01+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=1 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:01+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=1
+[36mINFO[0m[2025-07-23T23:19:01+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:06+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:06+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117978.1000 @ 18:19:06 
+[36mINFO[0m[2025-07-23T23:19:06+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:06+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:06+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:06+05:00] [DEBUG] BTCUSDT has 14 ticks from 18:18:01 to 18:19:06 UTC 
+[36mINFO[0m[2025-07-23T23:19:06+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:06+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:06+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:06+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:06+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:11+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:11+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117986.6000 @ 18:19:11 
+[36mINFO[0m[2025-07-23T23:19:11+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:11+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:11+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:11+05:00] [DEBUG] BTCUSDT has 15 ticks from 18:18:01 to 18:19:11 UTC 
+[36mINFO[0m[2025-07-23T23:19:11+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:11+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:11+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:11+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:11+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:16+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:16+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117994.2000 @ 18:19:16 
+[36mINFO[0m[2025-07-23T23:19:16+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:16+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:16+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:16+05:00] [DEBUG] BTCUSDT has 16 ticks from 18:18:01 to 18:19:16 UTC 
+[36mINFO[0m[2025-07-23T23:19:16+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:16+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:16+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:16+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:16+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:20+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:20+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117979.2000 @ 18:19:20 
+[36mINFO[0m[2025-07-23T23:19:20+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:20+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:20+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:20+05:00] [DEBUG] BTCUSDT has 17 ticks from 18:18:01 to 18:19:20 UTC 
+[36mINFO[0m[2025-07-23T23:19:20+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:20+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:20+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:20+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:20+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:25+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:25+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117964.0000 @ 18:19:25 
+[36mINFO[0m[2025-07-23T23:19:25+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:25+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:25+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:25+05:00] [DEBUG] BTCUSDT has 18 ticks from 18:18:01 to 18:19:25 UTC 
+[36mINFO[0m[2025-07-23T23:19:25+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:25+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:26+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:26+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:26+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:31+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:31+05:00] [DEBUG] Added NEW tick for BTCUSDT: 117967.1000 @ 18:19:31 
+[36mINFO[0m[2025-07-23T23:19:31+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:31+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:31+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:31+05:00] [DEBUG] BTCUSDT has 19 ticks from 18:18:01 to 18:19:31 UTC 
+[36mINFO[0m[2025-07-23T23:19:31+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:31+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:31+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:31+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:31+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:36+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:36+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118003.3000 @ 18:19:36 
+[36mINFO[0m[2025-07-23T23:19:36+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:36+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:36+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:36+05:00] [DEBUG] BTCUSDT has 20 ticks from 18:18:01 to 18:19:36 UTC 
+[36mINFO[0m[2025-07-23T23:19:36+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:36+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:36+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:36+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:36+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:41+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:41+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118005.7000 @ 18:19:41 
+[36mINFO[0m[2025-07-23T23:19:41+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:41+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:41+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:41+05:00] [DEBUG] BTCUSDT has 21 ticks from 18:18:01 to 18:19:41 UTC 
+[36mINFO[0m[2025-07-23T23:19:41+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:41+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:41+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:41+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:41+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:46+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:46+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118024.0000 @ 18:19:46 
+[36mINFO[0m[2025-07-23T23:19:46+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:46+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:46+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:46+05:00] [DEBUG] BTCUSDT has 22 ticks from 18:18:01 to 18:19:46 UTC 
+[36mINFO[0m[2025-07-23T23:19:46+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:46+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:46+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:46+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:46+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:51+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:51+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118033.3000 @ 18:19:51 
+[36mINFO[0m[2025-07-23T23:19:51+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:51+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:51+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:51+05:00] [DEBUG] BTCUSDT has 23 ticks from 18:18:01 to 18:19:51 UTC 
+[36mINFO[0m[2025-07-23T23:19:51+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:51+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:51+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:51+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:51+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:19:56+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:19:56+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118039.6000 @ 18:19:56 
+[36mINFO[0m[2025-07-23T23:19:56+05:00] ⏱️ Processing at minute 19, hour 18          
+[36mINFO[0m[2025-07-23T23:19:56+05:00] 📦 Returning intervals: [1m]                  
+[36mINFO[0m[2025-07-23T23:19:56+05:00] [Debug] Flushing intervals: [1m]             
+[36mINFO[0m[2025-07-23T23:19:56+05:00] [DEBUG] BTCUSDT has 24 ticks from 18:18:01 to 18:19:56 UTC 
+[36mINFO[0m[2025-07-23T23:19:56+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:18:00 - 18:19:00) Local(23:18:00 - 23:19:00) 
+[36mINFO[0m[2025-07-23T23:19:56+05:00] 📊 Extracted 1 OHLC records                   
+[36mINFO[0m[2025-07-23T23:19:56+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:19:56+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=1 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:19:56+05:00] ✅ Saved 1 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118030.0000 @ 18:20:01 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:01+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [DEBUG] BTCUSDT has 25 ticks from 18:18:01 to 18:20:01 UTC 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [DEBUG] BTCUSDT has 25 ticks from 18:18:01 to 18:20:01 UTC 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:01+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:01+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=2 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:01+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=2 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:01+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=2
+[36mINFO[0m[2025-07-23T23:20:01+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118029.9000 @ 18:20:06 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:06+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [DEBUG] BTCUSDT has 26 ticks from 18:18:01 to 18:20:06 UTC 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [DEBUG] BTCUSDT has 26 ticks from 18:18:01 to 18:20:06 UTC 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:06+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:06+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:06+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:06+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:06+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118019.4000 @ 18:20:11 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:11+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [DEBUG] BTCUSDT has 27 ticks from 18:18:01 to 18:20:11 UTC 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [DEBUG] BTCUSDT has 27 ticks from 18:18:01 to 18:20:11 UTC 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:11+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:11+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:11+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:11+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:11+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118019.4000 @ 18:20:16 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:16+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [DEBUG] BTCUSDT has 28 ticks from 18:18:01 to 18:20:16 UTC 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [DEBUG] BTCUSDT has 28 ticks from 18:18:01 to 18:20:16 UTC 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:16+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:16+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:16+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:16+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:16+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118030.0000 @ 18:20:21 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:21+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [DEBUG] BTCUSDT has 29 ticks from 18:18:01 to 18:20:21 UTC 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [DEBUG] BTCUSDT has 29 ticks from 18:18:01 to 18:20:21 UTC 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:21+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:21+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:21+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:21+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:21+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118030.0000 @ 18:20:26 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:26+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [DEBUG] BTCUSDT has 30 ticks from 18:18:01 to 18:20:26 UTC 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [DEBUG] BTCUSDT has 30 ticks from 18:18:01 to 18:20:26 UTC 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:26+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:26+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:26+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:26+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:26+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118045.6000 @ 18:20:31 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:31+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [DEBUG] BTCUSDT has 31 ticks from 18:18:01 to 18:20:31 UTC 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [DEBUG] BTCUSDT has 31 ticks from 18:18:01 to 18:20:31 UTC 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:31+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:31+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:31+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:31+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:31+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118025.9000 @ 18:20:36 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:36+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [DEBUG] BTCUSDT has 32 ticks from 18:18:01 to 18:20:36 UTC 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [DEBUG] BTCUSDT has 32 ticks from 18:18:01 to 18:20:36 UTC 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:36+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:36+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:36+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:36+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:36+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118033.2000 @ 18:20:40 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:40+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [DEBUG] BTCUSDT has 33 ticks from 18:18:01 to 18:20:40 UTC 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [DEBUG] BTCUSDT has 33 ticks from 18:18:01 to 18:20:40 UTC 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:40+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:40+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:40+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:40+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:40+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118033.3000 @ 18:20:46 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:46+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [DEBUG] BTCUSDT has 34 ticks from 18:18:01 to 18:20:46 UTC 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [DEBUG] BTCUSDT has 34 ticks from 18:18:01 to 18:20:46 UTC 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:46+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:46+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:46+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:46+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:46+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118029.2000 @ 18:20:50 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:50+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [DEBUG] BTCUSDT has 35 ticks from 18:18:01 to 18:20:50 UTC 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [DEBUG] BTCUSDT has 35 ticks from 18:18:01 to 18:20:50 UTC 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:50+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:50+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:50+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:50+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:50+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118045.6000 @ 18:20:56 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] ⏱️ Processing at minute 20, hour 18          
+[36mINFO[0m[2025-07-23T23:20:56+05:00] 📦 Returning intervals: [1m 5m]               
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [Debug] Flushing intervals: [1m 5m]          
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [DEBUG] BTCUSDT has 36 ticks from 18:18:01 to 18:20:56 UTC 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:19:00 - 18:20:00) Local(23:19:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [DEBUG] BTCUSDT has 36 ticks from 18:18:01 to 18:20:56 UTC 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] [DEBUG] BTCUSDT 5m candle: UTC(18:15:00 - 18:20:00) Local(23:15:00 - 23:20:00) 
+[36mINFO[0m[2025-07-23T23:20:56+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:20:56+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:56+05:00] ✅ Saved klines for BTCUSDT [5m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=5m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:20:56+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:20:56+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118038.4000 @ 18:21:01 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:01+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [DEBUG] BTCUSDT has 37 ticks from 18:18:01 to 18:21:01 UTC 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [DEBUG] BTCUSDT has 37 ticks from 18:18:01 to 18:21:01 UTC 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:01+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:01+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=2 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:01+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=2 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:01+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=2
+[36mINFO[0m[2025-07-23T23:21:01+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118077.6000 @ 18:21:06 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:06+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [DEBUG] BTCUSDT has 38 ticks from 18:18:01 to 18:21:06 UTC 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [DEBUG] BTCUSDT has 38 ticks from 18:18:01 to 18:21:06 UTC 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:06+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:06+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:06+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:06+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:06+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118097.1000 @ 18:21:11 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:11+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [DEBUG] BTCUSDT has 39 ticks from 18:18:01 to 18:21:11 UTC 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [DEBUG] BTCUSDT has 39 ticks from 18:18:01 to 18:21:11 UTC 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:11+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:11+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:11+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:11+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:11+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118079.7000 @ 18:21:16 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:16+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [DEBUG] BTCUSDT has 40 ticks from 18:18:01 to 18:21:16 UTC 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [DEBUG] BTCUSDT has 40 ticks from 18:18:01 to 18:21:16 UTC 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:16+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:16+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:16+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:16+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:16+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118075.7000 @ 18:21:21 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:21+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [DEBUG] BTCUSDT has 41 ticks from 18:18:01 to 18:21:21 UTC 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [DEBUG] BTCUSDT has 41 ticks from 18:18:01 to 18:21:21 UTC 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:21+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:21+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:21+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:21+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:21+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118070.6000 @ 18:21:26 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:26+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [DEBUG] BTCUSDT has 42 ticks from 18:18:01 to 18:21:26 UTC 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [DEBUG] BTCUSDT has 42 ticks from 18:18:01 to 18:21:26 UTC 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:26+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:26+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:26+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:26+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:26+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] 📥 Batch ticker fetch complete                 [36mfetched[0m=1 [36mrequested[0m=1
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [DEBUG] Added NEW tick for BTCUSDT: 118060.2000 @ 18:21:31 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] ⏱️ Processing at minute 21, hour 18          
+[36mINFO[0m[2025-07-23T23:21:31+05:00] 📦 Returning intervals: [1m 3m]               
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [Debug] Flushing intervals: [1m 3m]          
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [DEBUG] BTCUSDT has 43 ticks from 18:18:01 to 18:21:31 UTC 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [DEBUG] BTCUSDT 1m candle: UTC(18:20:00 - 18:21:00) Local(23:20:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [DEBUG] BTCUSDT has 43 ticks from 18:18:01 to 18:21:31 UTC 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] [DEBUG] BTCUSDT 3m candle: UTC(18:18:00 - 18:21:00) Local(23:18:00 - 23:21:00) 
+[36mINFO[0m[2025-07-23T23:21:31+05:00] 📊 Extracted 2 OHLC records                   
+[36mINFO[0m[2025-07-23T23:21:31+05:00] ✅ Saved klines for BTCUSDT [1m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=1m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:31+05:00] ✅ Saved klines for BTCUSDT [3m]               [36mattempted[0m=1 [36minserted[0m=0 [36minterval[0m=3m [36msymbol[0m=BTCUSDT
+[36mINFO[0m[2025-07-23T23:21:31+05:00] ✅ Saved all OHLC entries to DB                [36mattempted[0m=2 [36minserted[0m=0
+[36mINFO[0m[2025-07-23T23:21:31+05:00] ✅ Saved 2 OHLC entries to DB                 
+[36mINFO[0m[2025-07-23T23:21:32+05:00] 🛑 Shutdown signal received                   
+[36mINFO[0m[2025-07-23T23:21:32+05:00] 👋 App shutdown complete                      

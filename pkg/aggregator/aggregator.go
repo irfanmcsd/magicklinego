@@ -117,6 +117,12 @@ func (a *KlineAggregator) ExtractOhlc(now int64, intervals ...string) []models.S
 			candleEnd := (now / intervalMs) * intervalMs
 			candleStart := candleEnd - intervalMs
 
+			if a.Debug && len(ticks) > 0 {
+				first := time.UnixMilli(ticks[0].Time).UTC().Format("15:04:05")
+				last := time.UnixMilli(ticks[len(ticks)-1].Time).UTC().Format("15:04:05")
+				a.Logger.Printf("[DEBUG] %s has %d ticks from %s to %s UTC",
+					symbol, len(ticks), first, last)
+			}
 			// Debug with local time
 			if a.Debug {
 				startUTC := time.UnixMilli(candleStart).UTC().Format("15:04:05")
@@ -159,9 +165,9 @@ func (a *KlineAggregator) ExtractOhlc(now int64, intervals ...string) []models.S
 }
 
 func (a *KlineAggregator) cleanupOldTicks(symbol string, now int64) {
-	// Add buffer to keep extra history
-	buffer := a.maxIntervalMs * 2
-	oldestValid := now - buffer
+	// Keep 3x max interval to ensure coverage for all timeframes
+	retentionPeriod := a.maxIntervalMs * 3
+	oldestValid := now - retentionPeriod
 
 	filtered := []TickData{}
 	for _, tick := range a.tickBuffer[symbol] {
@@ -169,6 +175,12 @@ func (a *KlineAggregator) cleanupOldTicks(symbol string, now int64) {
 			filtered = append(filtered, tick)
 		}
 	}
+
+	if a.Debug && len(a.tickBuffer[symbol]) != len(filtered) {
+		a.Logger.Printf("[DEBUG] Cleaned %d old ticks from %s (kept %d)",
+			len(a.tickBuffer[symbol])-len(filtered), symbol, len(filtered))
+	}
+
 	a.tickBuffer[symbol] = filtered
 }
 
