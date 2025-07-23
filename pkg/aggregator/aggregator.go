@@ -16,26 +16,37 @@ type TickData struct {
 }
 
 func (a *KlineAggregator) AddPrice(symbol string, price float64, volume float64) {
-
 	a.lock.Lock()
 	defer a.lock.Unlock()
 
 	now := time.Now().UnixMilli()
-
-	// Round to nearest second to reduce noise (optional)
 	truncated := now - (now % 1000)
 
-	// Append tick data
 	tick := TickData{
 		Price:  price,
 		Time:   truncated,
 		Volume: volume,
 	}
-	a.tickBuffer[symbol] = append(a.tickBuffer[symbol], tick)
 
-	// Log the tick input
-	if a.Logger != nil {
-		a.Logger.Printf("[DEBUG] Added tick for %s: price=%.4f volume=%.4f time=%d (truncated)", symbol, price, volume, truncated)
+	// Check if we already have a tick at this timestamp
+	exists := false
+	for _, t := range a.tickBuffer[symbol] {
+		if t.Time == truncated {
+			exists = true
+			break
+		}
+	}
+
+	if !exists {
+		a.tickBuffer[symbol] = append(a.tickBuffer[symbol], tick)
+
+		if a.Debug {
+			a.Logger.Printf("[DEBUG] Added NEW tick for %s: %.4f @ %s",
+				symbol, price, time.UnixMilli(truncated).UTC().Format("15:04:05"))
+		}
+	} else if a.Debug {
+		a.Logger.Printf("[DEBUG] Skipped duplicate tick for %s at %s",
+			symbol, time.UnixMilli(truncated).UTC().Format("15:04:05"))
 	}
 }
 
@@ -81,11 +92,10 @@ func NewKlineAggregator(logger *logrus.Logger, debugMode bool) *KlineAggregator 
 	}
 }
 
-func (a *KlineAggregator) ExtractOhlc(intervals ...string) []models.SymbolKlineData {
+func (a *KlineAggregator) ExtractOhlc(now int64, intervals ...string) []models.SymbolKlineData {
 	a.lock.Lock()
 	defer a.lock.Unlock()
 
-	now := time.Now().UnixMilli()
 	var result []models.SymbolKlineData
 
 	for symbol, ticks := range a.tickBuffer {
@@ -93,7 +103,6 @@ func (a *KlineAggregator) ExtractOhlc(intervals ...string) []models.SymbolKlineD
 			continue
 		}
 
-		// Sort ticks chronologically
 		sort.Slice(ticks, func(i, j int) bool {
 			return ticks[i].Time < ticks[j].Time
 		})
@@ -104,29 +113,24 @@ func (a *KlineAggregator) ExtractOhlc(intervals ...string) []models.SymbolKlineD
 				continue
 			}
 
-			// Calculate FIXED epoch-aligned boundaries
+			// Precise boundary calculation
 			candleEnd := (now / intervalMs) * intervalMs
 			candleStart := candleEnd - intervalMs
 
+			// Debug with local time
 			if a.Debug {
+				startUTC := time.UnixMilli(candleStart).UTC().Format("15:04:05")
+				endUTC := time.UnixMilli(candleEnd).UTC().Format("15:04:05")
+				startLocal := time.UnixMilli(candleStart).Local().Format("15:04:05")
+				endLocal := time.UnixMilli(candleEnd).Local().Format("15:04:05")
+
 				a.Logger.Printf(
-					"[DEBUG] %s %s candle: %s - %s",
-					symbol, interval,
-					time.UnixMilli(candleStart).UTC().Format("15:04:05"),
-					time.UnixMilli(candleEnd).UTC().Format("15:04:05"),
+					"[DEBUG] %s %s candle: UTC(%s - %s) Local(%s - %s)",
+					symbol, interval, startUTC, endUTC, startLocal, endLocal,
 				)
 			}
 
-			// Verify we have data covering the full candle period
-			if ticks[0].Time > candleStart {
-				if a.Debug {
-					a.Logger.Printf("[DEBUG] Insufficient data for %s %s: first tick %d > candle start %d",
-						symbol, interval, ticks[0].Time, candleStart)
-				}
-				continue
-			}
-
-			// Collect ticks for this candle
+			// Find ticks efficiently
 			var group []TickData
 			for _, tick := range ticks {
 				if tick.Time >= candleStart && tick.Time < candleEnd {
@@ -135,23 +139,30 @@ func (a *KlineAggregator) ExtractOhlc(intervals ...string) []models.SymbolKlineD
 			}
 
 			if len(group) == 0 {
+				if a.Debug {
+					a.Logger.Printf(
+						"[DEBUG] No ticks for %s %s in [%d-%d]",
+						symbol, interval, candleStart, candleEnd,
+					)
+				}
 				continue
 			}
 
-			// Build and add the candle
 			kline := a.buildKline(symbol, interval, group, candleStart)
 			result = append(result, kline)
 		}
 
-		// Cleanup old ticks
+		// Cleanup with buffer
 		a.cleanupOldTicks(symbol, now)
 	}
 	return result
 }
 
-// Simplified cleanup - keep only ticks within max interval
 func (a *KlineAggregator) cleanupOldTicks(symbol string, now int64) {
-	oldestValid := now - a.maxIntervalMs
+	// Add buffer to keep extra history
+	buffer := a.maxIntervalMs * 2
+	oldestValid := now - buffer
+
 	filtered := []TickData{}
 	for _, tick := range a.tickBuffer[symbol] {
 		if tick.Time >= oldestValid {

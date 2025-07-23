@@ -153,19 +153,21 @@ loop:
 				}
 			}
 
-			// ⏱️ Determine flush intervals
-			//now := time.Now().UTC().Truncate(time.Second)
-			// ⏱️ Determine flush intervals
+			// ⏱️ Get current time
 			now := time.Now().UTC()
+			unixMillis := now.UnixNano() / int64(time.Millisecond)
+
+			// 📅 Determine flush intervals
 			flushNow := getFlushIntervals(now, log)
 
 			if kAgg.Debug {
 				kAgg.Logger.Infof("[Debug] Flushing intervals: %v", flushNow)
 			}
 
-			// Always process if there are intervals
+			// 🔄 Process intervals if any
 			if len(flushNow) > 0 {
-				klineData := kAgg.ExtractOhlc(flushNow...)
+				klineData := kAgg.ExtractOhlc(unixMillis, flushNow...)
+
 				if len(klineData) > 0 {
 					log.Infof("📊 Extracted %d OHLC records", len(klineData))
 
