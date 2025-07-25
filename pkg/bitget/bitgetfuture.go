@@ -28,7 +28,7 @@ var sharedClient = NewRateLimitedClient(&http.Client{
 
 // GetAllTickers fetches all USDT-margined perpetual futures tickers from Bitget
 func GetAllTickers() ([]*BitgetTickerInfo, error) {
-	url := "https://api.bitget.com/api/v2/market/tickers?productType=umcbl"
+	url := "https://api.bitget.com/api/mix/v1/market/tickers?productType=umcbl"
 
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {

@@ -19,29 +19,24 @@ import (
 )
 
 func main() {
-	// 🔒 Panic protection
 	defer func() {
 		if r := recover(); r != nil {
 			fmt.Printf("🔥 Panic recovered: %v\n", r)
 		}
 	}()
 
-	// 🧾 Initialize logger
 	loggerResult, _ := config.InitLogger(true)
 	log := loggerResult.Logger
 
 	log.Info("📈 App started")
 	log.Debug("🔍 Debug info loaded")
 
-	// ⚙️ Load configuration
 	config.LoadConfig("appsettings.yaml")
 	log.Info("⚙️ Configuration loaded")
 
-	// 🗃️ Initialize DB
 	db.InitDB(log)
 	log.Info("🗃️ Database initialized")
 
-	// 🧱 Run DB migrations
 	if err := db.AutoMigrate(); err != nil {
 		log.Fatalf("❌ AutoMigrate failed: %v", err)
 	}
@@ -50,28 +45,29 @@ func main() {
 	exchange := config.Settings.Exchange
 	symbols := config.Settings.Symbols
 
-	// ❌ Keep track of invalid symbols
+	// ❌ Load blacklisted symbols from config
 	invalidSymbols := make(map[string]bool)
+	for _, sym := range config.Settings.BlacklistedSymbols {
+		invalidSymbols[strings.ToUpper(sym)] = true
+	}
 
-	// 🔁 Setup symbol rotator
 	batchSize := 50
 	rotator := aggregator.NewSymbolRotator(symbols, batchSize)
 
-	// 📊 Initialize Kline aggregator
 	kAgg := aggregator.NewKlineAggregator(log, config.Settings.Debug)
 
-	// ⏱️ Setup ticker
-	refreshInterval := 5 * time.Second
+	if config.Settings.RefreshSeconds < 4 {
+		config.Settings.RefreshSeconds = 4
+	}
+	refreshInterval := time.Duration(config.Settings.RefreshSeconds) * time.Second
 	ticker := time.NewTicker(refreshInterval)
 	defer ticker.Stop()
 
-	// 🛑 Handle shutdown signals
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
 
 	log.WithField("exchange", exchange).Info("⏳ Starting periodic fetch loop")
 
-	// ✅ Validate and initialize streaming
 	streamCfg := config.Settings.Streaming
 	if err := global.ValidateStreamingConfig(streamCfg, log); err != nil {
 		log.Fatal(err)
@@ -86,10 +82,8 @@ loop:
 	for {
 		select {
 		case <-ticker.C:
-			// 🌪️ Random jitter (up to 500ms)
 			time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
 
-			// ♻️ Get next batch of symbols and filter out invalid ones
 			rawBatch := rotator.NextBatch()
 			batch := make([]string, 0, len(rawBatch))
 			for _, sym := range rawBatch {
@@ -103,14 +97,12 @@ loop:
 				continue
 			}
 
-			// 📥 Fetch tickers
 			tickers, err := exchanges.CoreFuturesAllTickers(exchange)
 			if err != nil {
 				log.Errorf("❌ Failed to fetch tickers: %v", err)
 				continue
 			}
 
-			// 🔍 Filter tickers based on batch
 			symbolSet := make(map[string]bool)
 			for _, sym := range batch {
 				symbolSet[strings.ToUpper(sym)] = true
@@ -129,20 +121,23 @@ loop:
 				"requested": len(batch),
 			}).Info("📥 Batch ticker fetch complete")
 
-			// 🛑 Mark symbols not found
+			// 🛑 Detect and persist new blacklisted symbols
 			foundSymbols := make(map[string]bool)
 			for _, t := range tickers {
 				foundSymbols[strings.ToUpper(t.Symbol)] = true
 			}
 			for _, sym := range batch {
 				up := strings.ToUpper(sym)
-				if !foundSymbols[up] {
-					log.WithField("symbol", up).Warn("🚫 Symbol not found in exchange response, blacklisting")
+				if !foundSymbols[up] && !invalidSymbols[up] {
+					log.WithField("symbol", up).Warn("🚫 Symbol not found in exchange response, blacklisting and saving to config")
 					invalidSymbols[up] = true
+					config.Settings.BlacklistedSymbols = append(config.Settings.BlacklistedSymbols, up)
+					if err := config.SaveConfig("appsettings.yaml"); err != nil {
+						log.Errorf("❌ Failed to save updated config: %v", err)
+					}
 				}
 			}
 
-			// ➕ Feed into aggregator + optional streaming
 			for _, t := range tickers {
 				price, err := strconv.ParseFloat(t.LastPrice, 64)
 				if err != nil {
@@ -170,23 +165,17 @@ loop:
 				}
 			}
 
-			// ⏱️ Get current time
 			now := time.Now().UTC().Truncate(time.Second)
-
-			// 📅 Determine flush intervals
 			flushNow := getFlushIntervals(now, log)
 
 			if kAgg.Debug {
 				kAgg.Logger.Infof("[Debug] Flushing intervals: %v", flushNow)
 			}
 
-			// 🔄 Process intervals if any
 			if len(flushNow) > 0 {
 				klineData := kAgg.ExtractOhlc(flushNow...)
-
 				if len(klineData) > 0 {
 					log.Infof("📊 Extracted %d OHLC records", len(klineData))
-
 					if err := db.SaveKlines(klineData, config.Settings.Instance, log); err != nil {
 						log.Errorf("❌ Failed to save klines: %v", err)
 					} else {
@@ -229,7 +218,7 @@ func getFlushIntervals(now time.Time, log *logrus.Logger) []string {
 }
 
 // uniqueStrings returns a deduplicated slice
-func uniqueStrings(input []string) []string {
+/*func uniqueStrings(input []string) []string {
 	seen := make(map[string]bool)
 	result := []string{}
 	for _, val := range input {
@@ -239,4 +228,4 @@ func uniqueStrings(input []string) []string {
 		}
 	}
 	return result
-}
+}*/

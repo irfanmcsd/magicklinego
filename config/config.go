@@ -34,6 +34,7 @@ type AggregatorSettings struct {
 type AppSettings struct {
 	Exchange           string             `yaml:"exchange"`
 	Instance           string             `mapstructure:"instance"`
+	RefreshSeconds     int                `mapstructure:"RefreshSeconds"`
 	Symbols            []string           `yaml:"symbol"`
 	BlacklistedSymbols []string           `yaml:"blacklisted_symbols"`
 	Aggregator         AggregatorSettings `yaml:"Aggregator"`

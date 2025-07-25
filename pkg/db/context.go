@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/glebarez/sqlite"
 	_ "github.com/lib/pq" // <-- Add this for PostgreSQL
@@ -63,15 +64,17 @@ func AutoMigrate() error {
 		&models.SymbolKlineData{},
 	)
 }
+
 func SaveKlines(data []models.SymbolKlineData, instance string, log *logrus.Logger) error {
 	if len(data) == 0 {
 		log.WithField("instance", instance).Info("📭 No klines to insert")
 		return nil
 	}
 
-	// Set instance field in all klines
+	// Set instance and clean symbol
 	for i := range data {
 		data[i].Instance = instance
+		data[i].Symbol = cleanSymbol(data[i].Symbol) // <-- Apply cleaner here
 	}
 
 	// Group data by symbol and interval for detailed logging
@@ -83,8 +86,8 @@ func SaveKlines(data []models.SymbolKlineData, instance string, log *logrus.Logg
 	logSummary := make(map[logKey]int)
 
 	for _, k := range data {
-		logKey := logKey{Symbol: k.Symbol, Interval: k.Interval}
-		logSummary[logKey]++
+		key := logKey{Symbol: k.Symbol, Interval: k.Interval}
+		logSummary[key]++
 	}
 
 	result := GormDB.Clauses(clause.OnConflict{
@@ -106,7 +109,7 @@ func SaveKlines(data []models.SymbolKlineData, instance string, log *logrus.Logg
 			"symbol":    key.Symbol,
 			"interval":  key.Interval,
 			"attempted": count,
-			"inserted":  result.RowsAffected, // optional per group
+			"inserted":  result.RowsAffected, // optional: total inserted
 		}).Infof("✅ Saved klines for %s [%s]", key.Symbol, key.Interval)
 	}
 
@@ -117,4 +120,30 @@ func SaveKlines(data []models.SymbolKlineData, instance string, log *logrus.Logg
 	}).Info("✅ Saved all OHLC entries to DB")
 
 	return nil
+}
+
+func cleanSymbol(raw string) string {
+	raw = strings.ToUpper(raw) // Normalize
+
+	// Case 1: Hyphen-based format
+	if strings.Contains(raw, "-") {
+		suffixes := []string{"-USDT-SWAP", "-USDT", "-USD-SWAP", "-USD", "-PERP", "-FUTURE", "-SWAP"}
+		for _, s := range suffixes {
+			if strings.HasSuffix(raw, s) {
+				return strings.TrimSuffix(raw, s)
+			}
+		}
+		return raw
+	}
+
+	// Case 2: Concatenated format (e.g. BTCUSDT, ETHUSD)
+	quoteAssets := []string{"USDT", "USD", "BUSD", "USDC", "TUSD", "DAI", "USDT_UMCBL"}
+	for _, quote := range quoteAssets {
+		if strings.HasSuffix(raw, quote) {
+			return strings.TrimSuffix(raw, quote)
+		}
+	}
+
+	// Default: return raw symbol
+	return raw
 }
