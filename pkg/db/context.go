@@ -37,6 +37,25 @@ func InitDB(log *logrus.Logger) {
 		log.Infof("✅ SQLite connected: %s", conn)
 
 	case "postgresql":
+		// 🔐 PostgreSQL connection loaded from environment variables:
+		// DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+
+		host := os.Getenv("DB_HOST")
+		port := os.Getenv("DB_PORT")
+		user := os.Getenv("DB_USER")
+		password := os.Getenv("DB_PASSWORD")
+		dbname := os.Getenv("DB_NAME")
+
+		// ✅ Minimal validation
+		if host == "" || port == "" || user == "" || password == "" || dbname == "" {
+			log.Fatal("❌ Missing one or more required DB environment variables: DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME")
+		}
+
+		conn = fmt.Sprintf(
+			"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+			host, port, user, password, dbname,
+		)
+
 		db, err = gorm.Open(postgres.Open(conn), &gorm.Config{})
 		if err != nil {
 			log.Fatalf("❌ Failed to connect to PostgreSQL: %v", err)

@@ -26002,3 +26002,13 @@
 [36mINFO[0m[2025-07-24T18:09:17+05:00] 📦 Returning intervals: [1m]                  
 [36mINFO[0m[2025-07-24T18:09:20+05:00] 🛑 Shutdown signal received                   
 [36mINFO[0m[2025-07-24T18:09:20+05:00] 👋 App shutdown complete                      
+[36mINFO[0m[2025-07-25T11:02:08+05:00] 📈 App started                                
+[37mDEBU[0m[2025-07-25T11:02:08+05:00] 🔍 Debug info loaded                          
+[36mINFO[0m[2025-07-25T11:02:08+05:00] ⚙️ Configuration loaded                      
+[36mINFO[0m[2025-07-25T11:02:09+05:00] ✅ PostgreSQL connected                       
+[36mINFO[0m[2025-07-25T11:02:09+05:00] 🗃️ Database initialized                      
+[36mINFO[0m[2025-07-25T11:02:09+05:00] ✅ Auto-migration complete                    
+[36mINFO[0m[2025-07-25T11:02:09+05:00] ⏳ Starting periodic fetch loop                [36mexchange[0m=bitget
+[36mINFO[0m[2025-07-25T11:02:09+05:00] 🔇 Streaming is disabled.                     
+[36mINFO[0m[2025-07-25T11:02:12+05:00] 🛑 Shutdown signal received                   
+[36mINFO[0m[2025-07-25T11:02:12+05:00] 👋 App shutdown complete                      

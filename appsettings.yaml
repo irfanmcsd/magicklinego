@@ -247,6 +247,10 @@ Streaming:
 Debug: false
 database:
   provider: postgresql
-  connectionString: host=localhost port=5432 user=postgres password=saimajj dbname=kline_db
-    sslmode=disable
+  connectionString: "" # 🔐 Leave empty. Set DB config via env vars:
+                       # DB_HOST=localhost
+                       # DB_PORT=5432
+                       # DB_USER=postgres
+                       # DB_PASSWORD=yourpassword
+                       # DB_NAME=kline_db
 RefreshSeconds : 5 # 5 second interval (min 4)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"os/signal"
@@ -10,6 +11,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
 	"scanner.magictradebot.com/config"
 	"scanner.magictradebot.com/pkg/aggregator"
@@ -17,6 +19,13 @@ import (
 	"scanner.magictradebot.com/pkg/exchanges"
 	"scanner.magictradebot.com/pkg/global"
 )
+
+func init() {
+	// Load .env (e.g., DB_HOST, DB_PASSWORD, etc.)
+	if err := godotenv.Load(); err != nil {
+		log.Println("⚠️  No .env file found (skipping)")
+	}
+}
 
 func main() {
 	defer func() {
