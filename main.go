@@ -19,7 +19,6 @@ import (
 )
 
 func main() {
-
 	// 🔒 Panic protection
 	defer func() {
 		if r := recover(); r != nil {
@@ -50,6 +49,9 @@ func main() {
 
 	exchange := config.Settings.Exchange
 	symbols := config.Settings.Symbols
+
+	// ❌ Keep track of invalid symbols
+	invalidSymbols := make(map[string]bool)
 
 	// 🔁 Setup symbol rotator
 	batchSize := 50
@@ -87,10 +89,17 @@ loop:
 			// 🌪️ Random jitter (up to 500ms)
 			time.Sleep(time.Duration(rand.Intn(500)) * time.Millisecond)
 
-			// ♻️ Get next batch of symbols
-			batch := rotator.NextBatch()
+			// ♻️ Get next batch of symbols and filter out invalid ones
+			rawBatch := rotator.NextBatch()
+			batch := make([]string, 0, len(rawBatch))
+			for _, sym := range rawBatch {
+				if !invalidSymbols[strings.ToUpper(sym)] {
+					batch = append(batch, sym)
+				}
+			}
+
 			if len(batch) == 0 {
-				log.Warn("⚠️ No symbols in batch to process")
+				log.Warn("⚠️ No valid symbols in batch to process")
 				continue
 			}
 
@@ -119,6 +128,19 @@ loop:
 				"fetched":   len(tickers),
 				"requested": len(batch),
 			}).Info("📥 Batch ticker fetch complete")
+
+			// 🛑 Mark symbols not found
+			foundSymbols := make(map[string]bool)
+			for _, t := range tickers {
+				foundSymbols[strings.ToUpper(t.Symbol)] = true
+			}
+			for _, sym := range batch {
+				up := strings.ToUpper(sym)
+				if !foundSymbols[up] {
+					log.WithField("symbol", up).Warn("🚫 Symbol not found in exchange response, blacklisting")
+					invalidSymbols[up] = true
+				}
+			}
 
 			// ➕ Feed into aggregator + optional streaming
 			for _, t := range tickers {

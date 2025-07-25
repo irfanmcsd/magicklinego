@@ -32,12 +32,13 @@ type AggregatorSettings struct {
 }
 
 type AppSettings struct {
-	Exchange   string             `yaml:"exchange"`
-	Instance   string             `mapstructure:"instance"`
-	Symbols    []string           `yaml:"symbol"`
-	Aggregator AggregatorSettings `yaml:"Aggregator"`
-	Streaming  StreamingConfig    `yaml:"Streaming"`
-	Debug      bool               `yaml:"Debug"`
+	Exchange           string             `yaml:"exchange"`
+	Instance           string             `mapstructure:"instance"`
+	Symbols            []string           `yaml:"symbol"`
+	BlacklistedSymbols []string           `yaml:"blacklisted_symbols"`
+	Aggregator         AggregatorSettings `yaml:"Aggregator"`
+	Streaming          StreamingConfig    `yaml:"Streaming"`
+	Debug              bool               `yaml:"Debug"`
 
 	Database struct {
 		Provider         string `yaml:"provider"`

@@ -3,6 +3,8 @@ instance: binance
 symbol:
   - BTCUSDT
 
+blacklisted_symbols:
+
 Debug: true
 
 database:
